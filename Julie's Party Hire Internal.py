@@ -15,8 +15,12 @@ def quit():
 
 #Create labels
 lbltitle = ttk.Label(root, text="Julies Party Hire", font=("Helvetica 30 bold"))
+lblfirstname = ttk.Label(root, text="First Name: ", font=("Helvetica 20"))
 
-lbltitle.grid(row=0, column=0, columnspan=2)
+
+
+lbltitle.grid(row=0, column=1, columnspan=0)
+lblfirstname.grid(row=1, column=1, columnspan=2)
 
 
 root.geometry("500x450")
