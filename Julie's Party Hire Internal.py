@@ -15,14 +15,14 @@ def quit():
 
 #Create append subroutine
 def append():
-    global hire_details, entry, entry1, entryIH, entry_quantity
+    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired
     # append each item to its own area of the list
-    customer_details.append([entry.get(), entry1.get(), entryIH.get(), entry_quantity.get()])
+    customer_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get()])
     #clear the boxes
-    entry.delete(0, 'end')
-    entry1.delete(0, 'end')
-    entryIH.delete(0, 'end')
-    entry_quantity.delete(0, 'end')
+    entry_firstname.delete(0, 'end')
+    entry_lastname.delete(0, 'end')
+    entry_receiptnumber.delete(0, 'end')
+    entry_itemhired.delete(0, 'end')
     total_entries += 1
 
 #Create and grid labels
@@ -40,7 +40,7 @@ lblitemhired.grid(row=4, column=0, columnspan=1, sticky = W)
 
 #Create Buttons
 def buttons():
-    Button(main_window, text="Append", font=("Helvetica 12")).grid(column=4,row=1)
+    Button(main_window, text="Append", font=("Helvetica 12"), command=append).grid(column=4,row=1)
     Button(main_window, text="Print", font=("Helvetica 12")).grid(column=2,row=1)
     Button(main_window, text="Quit", font=("Helvetica 12"), command=quit) .grid(column=3,row=1)
     Button(main_window, text="Delete", font=("Helvetica 12")).grid(column=3,row=4)
@@ -51,15 +51,15 @@ hire_details = []
 entry_firstname = Entry(main_window, font="Helvitica 12")
 entry_firstname.grid(column=1,row=1, sticky = W)
 
-hire_details = []
+
 entry_lastname = Entry(main_window, font="Helvitica 12")
 entry_lastname.grid(column=1,row=2, sticky = W)
 
-hire_details = []
+
 entry_receiptnumber = Entry(main_window, font="Helvitica 12")
 entry_receiptnumber.grid(column=1,row=3, sticky = W)
 
-hire_details = []
+
 entry_itemhired = Entry(main_window, font="Helvitica 12")
 entry_itemhired.grid(column=1,row=4, sticky = W)
 
