@@ -2,7 +2,6 @@
 
 
 #Import tkinter
-from re import A
 from tkinter import*
 from tkinter import ttk
 
@@ -31,12 +30,12 @@ def print_details():
     Label(main_window, font=("Helvetica 10 bold"),
           text="Number of Items Hired").grid(column=5, row=7)
     while name_count < total_entries:
-        Label(main_window, text=name_count).grid(coloumn=0, row=name_count+10)
-        Label(main_window, text=(hire_details[name_count][0])).grid(column=1, row=name_count+10)
-        Label(main_window, text=(hire_details[name_count][1])).grid(column=5, row=name_count+10)
-        Label(main_window, text=(hire_details[name_count][2])).grid(column=2, row=name_count+10)
-        Label(main_window, text=(hire_details[name_count][3])).grid(column=3, row=name_count+10)
-        Label(main_window, text=(hire_details[name_count][4])).grid(column=4, row=name_count+10)
+        Label(main_window, text=name_count).grid(column=0, row=name_count+10)
+        Label(main_window, text=(hire_details[name_count][0])).grid(column=1, row=name_count+8)
+        Label(main_window, text=(hire_details[name_count][1])).grid(column=2, row=name_count+8)
+        Label(main_window, text=(hire_details[name_count][2])).grid(column=3, row=name_count+8)
+        Label(main_window, text=(hire_details[name_count][3])).grid(column=4, row=name_count+8)
+        Label(main_window, text=(hire_details[name_count][4])).grid(column=5, row=name_count+8)
         name_count += 1 
         print(name_count)
 
@@ -45,7 +44,7 @@ def print_details():
 
 #Create append subroutine
 def append():
-    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired
+    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired, total_entries
     # append each item to its own area of the list
     hire_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get(), entry_numberitemhired.get()])
     #clear the boxes
@@ -72,7 +71,7 @@ def delete_row():
     Label(main_window, text="       ").grid(column=4, row=name_count+7)
     Label(main_window, text="       ").grid(column=5, row=name_count+7)
     # print all the items in the list
-    print_hire_details()
+    print_details()
 
 #Create and grid labels
 lbltitle = ttk.Label(main_window, text="Julies Party Hire", font=("Helvetica 20 bold"))
@@ -96,7 +95,7 @@ def buttons():
     Button(main_window, text="Append", font=("Helvetica 12"), command=append).grid(column=4,row=1)
     Button(main_window, text="Print", font=("Helvetica 12"), command=print_details).grid(column=2,row=1)
     Button(main_window, text="Quit", font=("Helvetica 12"), command=quit) .grid(column=3,row=1)
-    Button(main_window, text="Delete", font=("Helvetica 12")).grid(column=3,row=4)
+    Button(main_window, text="Delete", font=("Helvetica 12"), command=delete_row).grid(column=3,row=4)
 
 #Create Entry Boxes
 
