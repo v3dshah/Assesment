@@ -13,11 +13,27 @@ main_window=Tk()
 def quit():
     main_window.destroy()
 
+def print_camp_details():
+    # these are the global variables that are used
+    global j_names, total_entries, name_count
+    name_count = 0
+    # Create the column headings
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="Row").grid(column=0, row=7)
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="First Name").grid(column=1, row=7)
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="Last Name").grid(column=2, row=7)
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="Receipt Number").grid(column=3, row=7)
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="Weather").grid(column=4, row=7)
+
 #Create append subroutine
 def append():
     global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired
     # append each item to its own area of the list
-    customer_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get()])
+    hire_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get()])
     #clear the boxes
     entry_firstname.delete(0, 'end')
     entry_lastname.delete(0, 'end')
@@ -31,12 +47,14 @@ lblfirstname = ttk.Label(main_window, text="First Name: ", font=("Helvetica 15")
 lbllastname = ttk.Label(main_window, text="Last Name: ", font=("Helvetica 15"))
 lblreceiptnumber = ttk.Label(main_window, text="Receipt Number: ", font=("Helvetica 15"))
 lblitemhired = ttk.Label(main_window, text="Items Hired: ", font=("Helveitca 15"))
+lblnumberitemhired = ttk.Label(main_window, text="Number of Item Hired: ", font=("Helveitca 15"))
 
 lbltitle.grid(row=0, column=1, columnspan=1)
 lblfirstname.grid(row=1, column=0, columnspan=1, sticky = W)
 lbllastname.grid(row=2, column=0, columnspan=1, sticky = W)
 lblreceiptnumber.grid(row=3, column=0, columnspan=1, sticky = W)
 lblitemhired.grid(row=4, column=0, columnspan=1, sticky = W)
+lblnumberitemhired.grid(row=5, column=0, columnspan=1, sticky = W)
 
 #Create Buttons
 def buttons():
@@ -63,6 +81,9 @@ entry_receiptnumber.grid(column=1,row=3, sticky = W)
 entry_itemhired = Entry(main_window, font="Helvitica 12")
 entry_itemhired.grid(column=1,row=4, sticky = W)
 
+
+entry_numberitemhired = Entry(main_window, font="Helvitica 12")
+entry_numberitemhired.grid(column=1,row=5, sticky = W)
 
 
 main_window.geometry("500x450")
