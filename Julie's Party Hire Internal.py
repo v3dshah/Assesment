@@ -1,6 +1,5 @@
 #This program creates a GUI for Julies Party Hire
-#Author: Ved
-#Date: 10 June 2022
+
 
 #Import tkinter
 from re import A
@@ -13,9 +12,9 @@ main_window=Tk()
 def quit():
     main_window.destroy()
 
-def print_camp_details():
+def print_hire_details():
     # these are the global variables that are used
-    global j_names, total_entries, name_count
+    global  total_entries, name_count
     name_count = 0
     # Create the column headings
     Label(main_window, font=("Helvetica 10 bold"),
@@ -27,19 +26,42 @@ def print_camp_details():
     Label(main_window, font=("Helvetica 10 bold"),
           text="Receipt Number").grid(column=3, row=7)
     Label(main_window, font=("Helvetica 10 bold"),
-          text="Weather").grid(column=4, row=7)
+          text="Items Hired").grid(column=4, row=7)
+    Label(main_window, font=("Helvetica 10 bold"),
+          text="Number of Items Hired").grid(column=5, row=7)
+
+
+
 
 #Create append subroutine
 def append():
-    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired
+    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired
     # append each item to its own area of the list
-    hire_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get()])
+    hire_details.append([entry_firstname.get(), entry_lastname.get(), entry_receiptnumber.get(), entry_itemhired.get(), entry_numberitemhired.get()])
     #clear the boxes
     entry_firstname.delete(0, 'end')
     entry_lastname.delete(0, 'end')
     entry_receiptnumber.delete(0, 'end')
     entry_itemhired.delete(0, 'end')
+    entry_numberitemhired.delete(0, 'end')
     total_entries += 1
+
+
+def delete_row():
+    # these are the global variables that are used
+    global hire_details, delete_row, total_entries, name_count
+    # find which row is to be deleted and delete it
+    del hire_details[int(delete_row.get())]
+    total_entries = total_entries - 1
+    delete_row.delete(0, 'end')
+    # clear the last item displayed on the GUI
+    Label(main_window, text="       ").grid(column=0, row=name_count+7)
+    Label(main_window, text="       ").grid(column=1, row=name_count+7)
+    Label(main_window, text="       ").grid(column=2, row=name_count+7)
+    Label(main_window, text="       ").grid(column=3, row=name_count+7)
+    Label(main_window, text="       ").grid(column=4, row=name_count+7)
+    # print all the items in the list
+    print_hire_details()
 
 #Create and grid labels
 lbltitle = ttk.Label(main_window, text="Julies Party Hire", font=("Helvetica 20 bold"))
@@ -48,6 +70,7 @@ lbllastname = ttk.Label(main_window, text="Last Name: ", font=("Helvetica 15"))
 lblreceiptnumber = ttk.Label(main_window, text="Receipt Number: ", font=("Helvetica 15"))
 lblitemhired = ttk.Label(main_window, text="Items Hired: ", font=("Helveitca 15"))
 lblnumberitemhired = ttk.Label(main_window, text="Number of Item Hired: ", font=("Helveitca 15"))
+lbldeleterow = ttk.Label(main_window, text="Row #: ", font=("Helveitca 15"))
 
 lbltitle.grid(row=0, column=1, columnspan=1)
 lblfirstname.grid(row=1, column=0, columnspan=1, sticky = W)
@@ -55,6 +78,7 @@ lbllastname.grid(row=2, column=0, columnspan=1, sticky = W)
 lblreceiptnumber.grid(row=3, column=0, columnspan=1, sticky = W)
 lblitemhired.grid(row=4, column=0, columnspan=1, sticky = W)
 lblnumberitemhired.grid(row=5, column=0, columnspan=1, sticky = W)
+lbldeleterow.grid(row=5, column=3, columnspan=1, sticky = W)
 
 #Create Buttons
 def buttons():
@@ -66,6 +90,8 @@ def buttons():
 #Create Entry Boxes
 
 hire_details = []
+total_entries = 0
+
 entry_firstname = Entry(main_window, font="Helvitica 12")
 entry_firstname.grid(column=1,row=1, sticky = W)
 
