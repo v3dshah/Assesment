@@ -27,9 +27,9 @@ def print_details():
     Label(main_window, font=("Helvetica 10 bold"),
           text="Receipt Number").grid(column=3, row=7)
     Label(main_window, font=("Helvetica 10 bold"),
-          text="Items Hired").grid(column=4, row=7)
+          text="Item Hired").grid(column=4, row=7)
     Label(main_window, font=("Helvetica 10 bold"),
-          text="Number of Items Hired").grid(column=5, row=7)
+          text="Quantity of Item Hired").grid(column=5, row=7)
     while name_count < total_entries:
         Label(main_window, text=name_count).grid(column=0, row=name_count+8)
         Label(main_window, text=(hire_details[name_count][0])).grid(column=1, row=name_count+8)
@@ -133,12 +133,12 @@ def delete_row():
     total_entries = total_entries - 1
     delete_item.delete(0, 'end')
     # clear the last item displayed on the GUI
-    Label(main_window, text="       ").grid(column=0, row=name_count+7)
-    Label(main_window, text="       ").grid(column=1, row=name_count+7)
-    Label(main_window, text="       ").grid(column=2, row=name_count+7)
-    Label(main_window, text="       ").grid(column=3, row=name_count+7)
-    Label(main_window, text="       ").grid(column=4, row=name_count+7)
-    Label(main_window, text="       ").grid(column=5, row=name_count+7)
+    Label(main_window, text="                ").grid(column=0, row=name_count+7)
+    Label(main_window, text="                ").grid(column=1, row=name_count+7)
+    Label(main_window, text="                ").grid(column=2, row=name_count+7)
+    Label(main_window, text="                ").grid(column=3, row=name_count+7)
+    Label(main_window, text="                ").grid(column=4, row=name_count+7)
+    Label(main_window, text="                ").grid(column=5, row=name_count+7)
     # print all the items in the list
     print_details()
 
@@ -163,7 +163,7 @@ lbldeleterow.grid(row=5, column=3, columnspan=1, sticky = W)
 def buttons():
     Button(main_window, text="Append", font=("Helvetica 12"), width=10, command=check_inputs).grid(column=3,row=1)
     Button(main_window, text="Print", font=("Helvetica 12"), width=10, command=print_details).grid(column=4,row=1)
-    Button(main_window, text="Quit", font=("Helvetica 12"), width=10, fg='red', command=quit) .grid(column=5,row=1)
+    Button(main_window, text="Quit", font=("Helvetica 12"), width=10, fg='dark red', command=quit) .grid(column=5,row=1)
     Button(main_window, text="Delete", font=("Helvetica 12"), width=10,  command=delete_row).grid(column=3,row=4)
 
 #Create Entry Boxes
