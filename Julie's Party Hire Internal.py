@@ -2,6 +2,7 @@
 
 
 #Import tkinter
+
 from tkinter import*
 from tkinter import ttk
 
@@ -38,6 +39,74 @@ def print_details():
         Label(main_window, text=(hire_details[name_count][4])).grid(column=5, row=name_count+8)
         name_count += 1 
         print(name_count)
+
+
+
+
+def check_inputs():
+    # these are the global variables that are used
+    global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired, total_entries
+    input_check = 0
+    Label(main_window, text="               ") .grid(column=2, row=1)
+    Label(main_window, text="               ") .grid(column=2, row=2)
+    Label(main_window, text="               ") .grid(column=2, row=3)
+    Label(main_window, text="               ") .grid(column=2, row=4)
+    Label(main_window, text="               ") .grid(column=2, row=5)
+   #customer name 
+    #cannot be blank
+    if len(entry_firstname.get()) == 0:
+        Label(main_window,fg='red',text="Required ",font='Helveitca 12').grid(column=2,row=1)
+        entry_check=1
+
+    if len(entry_lastname.get()) == 0:
+        Label(main_window,fg='red',text="Required ",font='Helveitca 12').grid(column=2,row=2)
+        entry_check=1
+
+#receipt number
+    #cannot be blank
+    hasAlpha2 = False
+    hasSpace2 = False
+    for y in entry_receiptnumber.get():
+        if y.isalpha():
+            hasAlpha2 = True
+        elif y.isspace():
+            hasSpace2 = True
+    #Ensure is digit
+    if entry_receiptnumber.get().isdigit():
+        Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
+        Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
+        entry_check = 0
+    else:
+        Label(main_window, fg='red', text="Enter a number",font='Helveitca 12').grid(column=2,row=3)
+        entry_check = 1
+
+#item hired ensure is not left blank
+    if len(entry_itemhired.get()) == 0:
+        Label(main_window,fg='red',text="Required ",font='Helveitca 12').grid(column=2,row=4)
+        entry_check=1
+
+#Number of item hired ensure number between 1-500
+    if (entry_numberitemhired.get().isdigit()):
+        if 0 < int(entry_numberitemhired.get()) <= 500:
+            Label(main_window, text="                  ").grid(column=2,row=5)
+            Label(main_window, text="                  ").grid(column=2,row=5)
+            entry_check = 0
+        else:
+            Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
+            Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
+            entry_check = 1  
+    else:
+        Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
+        Label(main_window, fg='red', text="",font='Helveitca 12').grid(column=2,row=5)
+        entry_check = 1
+
+#if entrys all valid, append
+    if entry_check == 0:
+        append()
+
+
+
+
 
 
 
@@ -92,15 +161,14 @@ lbldeleterow.grid(row=5, column=3, columnspan=1, sticky = W)
 
 #Create Buttons
 def buttons():
-    Button(main_window, text="Append", font=("Helvetica 12"), command=append).grid(column=4,row=1)
-    Button(main_window, text="Print", font=("Helvetica 12"), command=print_details).grid(column=2,row=1)
-    Button(main_window, text="Quit", font=("Helvetica 12"), command=quit) .grid(column=3,row=1)
-    Button(main_window, text="Delete", font=("Helvetica 12"), command=delete_row).grid(column=3,row=4)
+    Button(main_window, text="Append", font=("Helvetica 12"), width=10, command=check_inputs).grid(column=3,row=1)
+    Button(main_window, text="Print", font=("Helvetica 12"), width=10, command=print_details).grid(column=4,row=1)
+    Button(main_window, text="Quit", font=("Helvetica 12"), width=10, command=quit) .grid(column=5,row=1)
+    Button(main_window, text="Delete", font=("Helvetica 12"), width=10,  command=delete_row).grid(column=3,row=4)
 
 #Create Entry Boxes
 
-hire_details = []
-total_entries = 0
+
 
 entry_firstname = Entry(main_window, font="Helvitica 12")
 entry_firstname.grid(column=1,row=1, sticky = W)
@@ -122,8 +190,13 @@ entry_numberitemhired = Entry(main_window, font="Helvitica 12")
 entry_numberitemhired.grid(column=1,row=5, sticky = W)
 
 delete_item = Entry(main_window)
-delete_item .grid(column=4,row=5)
+delete_item .grid(column=4,row=5, sticky = W)
 
-main_window.geometry("800x500")
+
+hire_details = []
+total_entries = 0
+
+main_window.geometry("1000x500")
+main_window.title("Database of Julie's Party Hire")
 buttons()
 main_window.mainloop()
