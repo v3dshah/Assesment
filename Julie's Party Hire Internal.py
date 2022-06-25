@@ -62,10 +62,24 @@ def check_inputs():
     if len(entry_firstname.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=1)
         entry_checkfn=1
+    elif entry_firstname.get().isalpha():
+        Label(main_window, text="                  ").grid(column=2,row=1,sticky=W)
+        Label(main_window, text="                  ").grid(column=2,row=1,sticky=W)
+        entry_checkfn = 0
+    else:
+        Label(main_window, fg='red', text="No letters can be entered, only letters",font='Helveitca 12').grid(column=2,row=1)
+        entry_checkfn = 1
 
     if len(entry_lastname.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=2)
         entry_checkln=1
+    elif entry_lastname.get().isalpha():
+        Label(main_window, text="                  ").grid(column=2,row=2,sticky=W)
+        Label(main_window, text="                  ").grid(column=2,row=2,sticky=W)
+        entry_checkln = 0
+    else:
+        Label(main_window, fg='red', text="No letters can be entered, only letters",font='Helveitca 12').grid(column=2,row=2)
+        entry_checkln = 1
 
 #receipt number
     #cannot be blank
@@ -89,6 +103,13 @@ def check_inputs():
     if len(entry_itemhired.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank, enter item that has been hired ",font='Helveitca 12').grid(column=2,row=4)
         entry_checkih=1
+    elif entry_itemhired.get().isalpha():
+        Label(main_window, text="                  ").grid(column=2,row=4,sticky=W)
+        Label(main_window, text="                  ").grid(column=2,row=4,sticky=W)
+        entry_checkih = 0
+    else:
+        Label(main_window, fg='red', text="No letters can be entered, only letters",font='Helveitca 12').grid(column=2,row=4)
+        entry_checkih = 1
 
 # number of item hired ensure number between 1-500
     if (entry_numberitemhired.get().isdigit()):
@@ -191,7 +212,7 @@ delete_item .grid(column=4,row=5, sticky = W)
 #start program
 hire_details = []
 total_entries = 0
-main_window.geometry("1070x500")
+main_window.geometry("1150x500")
 main_window.title("Database of Julie's Party Hire")
 buttons()
 main_window.mainloop()
