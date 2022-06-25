@@ -68,7 +68,7 @@ def check_inputs():
         Label(main_window, text="                  ").grid(column=2,row=1,sticky=W)
         entry_checkfn = 0
     else:
-        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters",font='Helveitca 12').grid(column=2,row=1)
+        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters only",font='Helveitca 12').grid(column=2,row=1)
         entry_checkfn = 1
 
     if len(entry_lastname.get()) == 0:
@@ -80,7 +80,7 @@ def check_inputs():
         Label(main_window, text="                  ").grid(column=2,row=2,sticky=W)
         entry_checkln = 0
     else:
-        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters",font='Helveitca 12').grid(column=2,row=2)
+        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters only",font='Helveitca 12').grid(column=2,row=2)
         entry_checkln = 1
 
 #receipt number
@@ -98,7 +98,7 @@ def check_inputs():
         Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
         entry_checkrn = 0
     else:
-        Label(main_window, fg='red', text="This cannot be left blank, enter numbers only",font='Helveitca 12').grid(column=2,row=3)
+        Label(main_window, fg='red', text="This cannot be left blank and enter numbers only",font='Helveitca 12').grid(column=2,row=3)
         entry_checkrn = 1
 
 # item hired ensure is not left blank
@@ -111,7 +111,7 @@ def check_inputs():
         Label(main_window, text="                  ").grid(column=2,row=4,sticky=W)
         entry_checkih = 0
     else:
-        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters",font='Helveitca 12').grid(column=2,row=4)
+        Label(main_window, fg='red', text="Sorry no numbers can be entered, please enter letters only",font='Helveitca 12').grid(column=2,row=4)
         entry_checkih = 1
 
 # number of item hired ensure number between 1-500
