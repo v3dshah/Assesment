@@ -46,21 +46,26 @@ def print_details():
 def check_inputs():
     # these are the global variables that are used
     global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired, total_entries
-    input_check = 0
-    Label(main_window, text="                                                                 ") .grid(column=2, row=1)
-    Label(main_window, text="                                                                 ") .grid(column=2, row=2)
-    Label(main_window, text="                                                                 ") .grid(column=2, row=3)
-    Label(main_window, text="                                                                 ") .grid(column=2, row=4)
-    Label(main_window, text="                                                                 ") .grid(column=2, row=5)
+    entry_checkfn = 0
+    entry_checkln = 0
+    entry_checkrn = 0
+    entry_checkih = 0
+    entry_checknih = 0 
+    Label(main_window, text="                                                                                       ") .grid(column=2, row=1)
+    Label(main_window, text="                                                                                       ") .grid(column=2, row=2)
+    Label(main_window, text="                                                                                       ") .grid(column=2, row=3)
+    Label(main_window, text="                                                                                       ") .grid(column=2, row=4)
+    Label(main_window, text="                                                                                       ") .grid(column=2, row=5)
+
    #customer name               
     #cannot be blank
     if len(entry_firstname.get()) == 0:
-        Label(main_window,fg='red',text="This cannot be left blank, enter first name ",font='Helveitca 12').grid(column=2,row=1)
-        entry_check=1
+        Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=1)
+        entry_checkfn=1
 
     if len(entry_lastname.get()) == 0:
-        Label(main_window,fg='red',text="This cannot be left blank, enter last name ",font='Helveitca 12').grid(column=2,row=2)
-        entry_check=1
+        Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=2)
+        entry_checkln=1
 
 #receipt number
     #cannot be blank
@@ -75,34 +80,36 @@ def check_inputs():
     if entry_receiptnumber.get().isdigit():
         Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
         Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
-        entry_check = 0
+        entry_checkrn = 0
     else:
-        Label(main_window, fg='red', text="Enter a number",font='Helveitca 12').grid(column=2,row=3)
-        entry_check = 1
+        Label(main_window, fg='red', text="This cannot be left blank, enter numbers only",font='Helveitca 12').grid(column=2,row=3)
+        entry_checkrn = 1
 
 #item hired ensure is not left blank
     if len(entry_itemhired.get()) == 0:
-        Label(main_window,fg='red',text="Enter item customer has hired ",font='Helveitca 12').grid(column=2,row=4)
-        entry_check=1
+        Label(main_window,fg='red',text="This cannot be left blank, enter item that has been hired ",font='Helveitca 12').grid(column=2,row=4)
+        entry_checkih=1
 
 #Number of item hired ensure number between 1-500
     if (entry_numberitemhired.get().isdigit()):
         if 0 < int(entry_numberitemhired.get()) <= 500:
             Label(main_window, text="                  ").grid(column=2,row=5)
             Label(main_window, text="                  ").grid(column=2,row=5)
-            entry_check = 0
+            entry_checknih = 0
         else:
             Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
             Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
-            entry_check = 1  
+            entry_checknih = 1  
     else:
         Label(main_window, fg='red', text="Enter number between 1-500",font='Helveitca 12').grid(column=2,row=5)
         Label(main_window, fg='red', text="",font='Helveitca 12').grid(column=2,row=5)
-        entry_check = 1
+        entry_checknih = 1
 
 #if entrys all valid, append
-    if entry_check == 0:
+    if entry_checkfn == 0 and entry_checkln ==0 and entry_checkrn ==0 and entry_checkih ==0 and entry_checknih ==0:
         append()
+        
+
 
 
 
@@ -148,7 +155,7 @@ lblfirstname = ttk.Label(main_window, text="First Name: ", font=("Helvetica 15")
 lbllastname = ttk.Label(main_window, text="Last Name: ", font=("Helvetica 15"))
 lblreceiptnumber = ttk.Label(main_window, text="Receipt Number: ", font=("Helvetica 15"))
 lblitemhired = ttk.Label(main_window, text="Item Hired: ", font=("Helveitca 15"))
-lblnumberitemhired = ttk.Label(main_window, text="Quantity of Item Hired: ", font=("Helveitca 15"))
+lblnumberitemhired = ttk.Label(main_window, text="Quantity of Item Hired (1-500): ", font=("Helveitca 15"))
 lbldeleterow = ttk.Label(main_window, text="Row #: ", font=("Helveitca 15"))
 
 lbltitle.grid(row=0, column=1, columnspan=1)
@@ -196,7 +203,8 @@ delete_item .grid(column=4,row=5, sticky = W)
 hire_details = []
 total_entries = 0
 
-main_window.geometry("1000x500")
+
+main_window.geometry("1070x500")
 main_window.title("Database of Julie's Party Hire")
 buttons()
 main_window.mainloop()
