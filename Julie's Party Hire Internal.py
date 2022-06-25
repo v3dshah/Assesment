@@ -62,6 +62,7 @@ def check_inputs():
     if len(entry_firstname.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=1)
         entry_checkfn=1
+        #ensure only strings are valid
     elif entry_firstname.get().isalpha():
         Label(main_window, text="                  ").grid(column=2,row=1,sticky=W)
         Label(main_window, text="                  ").grid(column=2,row=1,sticky=W)
@@ -73,6 +74,7 @@ def check_inputs():
     if len(entry_lastname.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank (letters only) ",font='Helveitca 12').grid(column=2,row=2)
         entry_checkln=1
+        #ensure only strings are valid
     elif entry_lastname.get().isalpha():
         Label(main_window, text="                  ").grid(column=2,row=2,sticky=W)
         Label(main_window, text="                  ").grid(column=2,row=2,sticky=W)
@@ -103,6 +105,7 @@ def check_inputs():
     if len(entry_itemhired.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank, enter item that has been hired ",font='Helveitca 12').grid(column=2,row=4)
         entry_checkih=1
+        #ensure only strings are valid
     elif entry_itemhired.get().isalpha():
         Label(main_window, text="                  ").grid(column=2,row=4,sticky=W)
         Label(main_window, text="                  ").grid(column=2,row=4,sticky=W)
@@ -130,13 +133,6 @@ def check_inputs():
     if entry_checkfn == 0 and entry_checkln ==0 and entry_checkrn ==0 and entry_checkih ==0 and entry_checknih ==0:
         append()
         
-
-
-
-
-
-
-
 
 
 #Create append subroutine
