@@ -1,4 +1,4 @@
-#This program creates a GUI for Julies Party Hire
+#This program creates a database for Julies Party Hire
 
 
 #Import tkinter
@@ -8,16 +8,16 @@ from tkinter import ttk
 
 main_window=Tk()
 
-#Create quit subroutine
+# create quit subroutine
 def quit():
     main_window.destroy()
 
-#Print customer details
+# print customer details
 def print_details():
     # these are the global variables that are used
     global  total_entries, name_count
     name_count = 0
-    # Create the column headings
+    # create the column headings
     Label(main_window, font=("Helvetica 10 bold"),
           text="Row").grid(column=0, row=7)
     Label(main_window, font=("Helvetica 10 bold"),
@@ -42,7 +42,7 @@ def print_details():
 
 
 
-
+#create function to check validity of inputs
 def check_inputs():
     # these are the global variables that are used
     global hire_details, entry_firstname, entry_lastname, entry_receiptnumber, entry_itemhired, entry_numberitemhired, total_entries
@@ -76,7 +76,7 @@ def check_inputs():
             hasAlpha2 = True
         elif y.isspace():
             hasSpace2 = True
-    #Ensure is digit
+    # ensure is digit
     if entry_receiptnumber.get().isdigit():
         Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
         Label(main_window, text="                  ").grid(column=2,row=3,sticky=W)
@@ -85,12 +85,12 @@ def check_inputs():
         Label(main_window, fg='red', text="This cannot be left blank, enter numbers only",font='Helveitca 12').grid(column=2,row=3)
         entry_checkrn = 1
 
-#item hired ensure is not left blank
+# item hired ensure is not left blank
     if len(entry_itemhired.get()) == 0:
         Label(main_window,fg='red',text="This cannot be left blank, enter item that has been hired ",font='Helveitca 12').grid(column=2,row=4)
         entry_checkih=1
 
-#Number of item hired ensure number between 1-500
+# number of item hired ensure number between 1-500
     if (entry_numberitemhired.get().isdigit()):
         if 0 < int(entry_numberitemhired.get()) <= 500:
             Label(main_window, text="                  ").grid(column=2,row=5)
@@ -149,7 +149,7 @@ def delete_row():
     # print all the items in the list
     print_details()
 
-#Create and grid labels
+# create and grid labels
 lbltitle = ttk.Label(main_window, text="Julies Party Hire", font=("Helvetica 20 bold"))
 lblfirstname = ttk.Label(main_window, text="First Name: ", font=("Helvetica 15"))
 lbllastname = ttk.Label(main_window, text="Last Name: ", font=("Helvetica 15"))
@@ -166,44 +166,31 @@ lblitemhired.grid(row=4, column=0, columnspan=1, sticky = W)
 lblnumberitemhired.grid(row=5, column=0, columnspan=1, sticky = W)
 lbldeleterow.grid(row=5, column=3, columnspan=1, sticky = W)
 
-#Create Buttons
+# create buttons
 def buttons():
     Button(main_window, text="Append", font=("Helvetica 12"), width=10, command=check_inputs).grid(column=3,row=1)
     Button(main_window, text="Print", font=("Helvetica 12"), width=10, command=print_details).grid(column=4,row=1)
     Button(main_window, text="Quit", font=("Helvetica 12"), width=10, fg='dark red', command=quit) .grid(column=5,row=1)
     Button(main_window, text="Delete", font=("Helvetica 12"), width=10,  command=delete_row).grid(column=3,row=4)
 
-#Create Entry Boxes
-
-
-
+# create entry boxes
 entry_firstname = Entry(main_window, font="Helvitica 12")
 entry_firstname.grid(column=1,row=1, sticky = W)
-
-
 entry_lastname = Entry(main_window, font="Helvitica 12")
 entry_lastname.grid(column=1,row=2, sticky = W)
-
-
 entry_receiptnumber = Entry(main_window, font="Helvitica 12")
 entry_receiptnumber.grid(column=1,row=3, sticky = W)
-
-
 entry_itemhired = Entry(main_window, font="Helvitica 12")
 entry_itemhired.grid(column=1,row=4, sticky = W)
-
-
 entry_numberitemhired = Entry(main_window, font="Helvitica 12")
 entry_numberitemhired.grid(column=1,row=5, sticky = W)
-
 delete_item = Entry(main_window)
 delete_item .grid(column=4,row=5, sticky = W)
 
 
+#start program
 hire_details = []
 total_entries = 0
-
-
 main_window.geometry("1070x500")
 main_window.title("Database of Julie's Party Hire")
 buttons()
